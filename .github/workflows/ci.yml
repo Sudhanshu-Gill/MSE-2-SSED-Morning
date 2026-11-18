@@ -1,3 +1,4 @@
+
 name: Docker Practical - CI Evaluation
 
 on:
@@ -44,7 +45,7 @@ jobs:
           fi
 
       - name: Check required files
-        run: bash instructor-evaluation/scripts/check-required-files.sh
+        run: bash "$GITHUB_WORKSPACE/instructor-evaluation/scripts/check-required-files.sh"
 
       - name: Validate frontend Dockerfile
         run: docker run --rm -i hadolint/hadolint < frontend/Dockerfile
@@ -116,7 +117,7 @@ jobs:
         run: npm test -- --json --outputFile=test-results.json
 
       - name: Test PostgreSQL persistence
-        run: bash instructor-evaluation/scripts/persistence-test.sh
+        run: bash "$GITHUB_WORKSPACE/instructor-evaluation/scripts/persistence-test.sh"
 
       - name: Capture container status and logs
         if: always()
